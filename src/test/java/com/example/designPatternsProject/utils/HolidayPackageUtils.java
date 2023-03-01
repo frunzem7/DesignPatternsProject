@@ -5,7 +5,7 @@ import com.example.designPatternsProject.models.entities.HolidayPackage;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import static com.example.designPatternsProject.TestConstants.*;
+import static com.example.designPatternsProject.utils.TestConstants.*;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class HolidayPackageUtils {
