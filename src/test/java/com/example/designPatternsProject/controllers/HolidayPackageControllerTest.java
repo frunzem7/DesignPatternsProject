@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -31,7 +30,6 @@ public class HolidayPackageControllerTest extends BaseController {
     private HolidayPackageService holidayPackageService;
 
     @Test
-    @WithMockUser
     void shouldCreateHolidayPackage() throws Exception {
         when(holidayPackageService.createHolidayPackage(HOLIDAY_PACKAGE_DTO_ONE)).thenReturn(HOLIDAY_PACKAGE_DTO_ONE);
 
@@ -47,7 +45,6 @@ public class HolidayPackageControllerTest extends BaseController {
     }
 
     @Test
-    @WithMockUser
     void shouldReturnAllHolidayPackageTest() throws Exception {
         when(holidayPackageService.getAllHolidayPackage())
                 .thenReturn(Collections.singletonList(HOLIDAY_PACKAGE_DTO_ONE));
@@ -63,7 +60,6 @@ public class HolidayPackageControllerTest extends BaseController {
     }
 
     @Test
-    @WithMockUser
     void shouldReturnHolidayPackageByIdTest() throws Exception {
         when(holidayPackageService.getById(ID_ONE))
                 .thenReturn(HOLIDAY_PACKAGE_DTO_ONE);
@@ -78,7 +74,6 @@ public class HolidayPackageControllerTest extends BaseController {
     }
 
     @Test
-    @WithMockUser
     void shouldDeleteHolidayPackageByIdTest() throws Exception {
         mockMvc.perform(delete("/holiday-package/{id}", HOLIDAY_PACKAGE_DTO_ONE.getId()))
                 .andDo(print())
