@@ -9,9 +9,9 @@ public interface HolidayPackageService {
 
     List<HolidayPackageDTO> getAllHolidayPackage();
 
-    HolidayPackageDTO getById(Long holidayPackageId) throws Exception;
+    HolidayPackageDTO getById(Long holidayPackageId);
 
     HolidayPackageDTO updateHolidayPackage(Long id, HolidayPackageDTO holidayPackageDTO);
 
-    String deleteHolidayPackageById(Long holidayPackageId);
+    void deleteHolidayPackageById(Long holidayPackageId);
 }

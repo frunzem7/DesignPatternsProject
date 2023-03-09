@@ -9,9 +9,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Builder
+@Builder(toBuilder = true)
 @Table(name = "holiday_packages")
-public class HolidayPackage {
+public class HolidayPackage implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -25,4 +25,13 @@ public class HolidayPackage {
 
     @Column(name = "activities")
     private String activities;
+
+    @Override
+    public HolidayPackage clone() {
+        try {
+            return (HolidayPackage) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

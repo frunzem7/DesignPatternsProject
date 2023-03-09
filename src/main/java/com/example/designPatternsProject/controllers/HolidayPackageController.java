@@ -37,8 +37,8 @@ public class HolidayPackageController {
             @ApiResponse(code = 500, message = "Internal server error.")
     })
     @GetMapping("/")
-    public List<HolidayPackageDTO> getAllHolidayPackage() {
-        return holidayPackageService.getAllHolidayPackage();
+    public ResponseEntity<List<HolidayPackageDTO>> getAllHolidayPackage() {
+        return ResponseEntity.ok(holidayPackageService.getAllHolidayPackage());
     }
 
     @ApiOperation(value = "Get holiday package by ID.", notes = "Get holiday package by ID and return a holiday " +
@@ -50,9 +50,9 @@ public class HolidayPackageController {
             @ApiResponse(code = 500, message = "Internal server error.")
     })
     @GetMapping("/{id}")
-    public HolidayPackageDTO getById(
-            @ApiParam(value = "ID of the holiday package to retrieve.", required = true) @PathVariable Long id) throws Exception {
-        return holidayPackageService.getById(id);
+    public ResponseEntity<HolidayPackageDTO> getById(
+            @ApiParam(value = "ID of the holiday package to retrieve.", required = true) @PathVariable Long id) {
+        return ResponseEntity.ok(holidayPackageService.getById(id));
     }
 
     @ApiOperation(value = "Update holiday package.", notes = "Update holiday package and return a message that it " +
@@ -64,10 +64,10 @@ public class HolidayPackageController {
             @ApiResponse(code = 500, message = "Internal server error.")
     })
     @PutMapping("/{id}")
-    public HolidayPackageDTO updateHolidayPackage(
+    public ResponseEntity<HolidayPackageDTO> updateHolidayPackage(
             @ApiParam(value = "ID of the holiday package to update.", required = true) @PathVariable Long id,
             @ApiParam(value = "Holiday package data to update.", required = true) @RequestBody HolidayPackageDTO holidayPackageDTO) {
-        return holidayPackageService.updateHolidayPackage(id, holidayPackageDTO);
+        return ResponseEntity.ok(holidayPackageService.updateHolidayPackage(id, holidayPackageDTO));
     }
 
     @ApiOperation(value = "Delete holiday package.", notes = "Delete holiday package by ID and return a message that " +
@@ -79,7 +79,8 @@ public class HolidayPackageController {
             @ApiResponse(code = 500, message = "Internal server error.")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id) {
-        return ResponseEntity.ok(holidayPackageService.deleteHolidayPackageById(id));
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        holidayPackageService.deleteHolidayPackageById(id);
+        return ResponseEntity.ok().build();
     }
 }
