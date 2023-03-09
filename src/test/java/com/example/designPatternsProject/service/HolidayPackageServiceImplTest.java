@@ -61,10 +61,10 @@ public class HolidayPackageServiceImplTest {
 
     @Test
     void shouldDeleteHolidayPackageById() {
-        doNothing().when(this.holidayPackageRepository).deleteById(any());
+        when(this.holidayPackageRepository.findById(ID_ONE)).thenReturn(Optional.of(HOLIDAY_PACKAGE_ONE));
 
         this.holidayPackageService.deleteHolidayPackageById(ID_ONE);
 
-        verify(this.holidayPackageRepository).deleteById(any());
+        verify(this.holidayPackageRepository).delete(HOLIDAY_PACKAGE_ONE);
     }
 }
