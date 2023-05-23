@@ -83,4 +83,18 @@ public class HolidayPackageController {
         holidayPackageService.deleteHolidayPackageById(id);
         return ResponseEntity.ok().build();
     }
+
+    @ApiOperation(value = "Get all information about holiday package by ID.",
+            notes = "Get holiday package by ID and return all information about holiday package DTO.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Holiday package retrieved successfully."),
+            @ApiResponse(code = 400, message = "Invalid input or bad request."),
+            @ApiResponse(code = 404, message = "Holiday package not found."),
+            @ApiResponse(code = 500, message = "Internal server error.")
+    })
+    @GetMapping("/{id}/all-information")
+    public ResponseEntity<String> getAllInformationInOneLine(
+            @ApiParam(value = "ID of the holiday package to retrieve.", required = true) @PathVariable Long id) {
+        return ResponseEntity.ok(holidayPackageService.getAllInformationInOneLine(id));
+    }
 }

@@ -18,7 +18,6 @@ public class HolidayPackageUtils {
     public static final HolidayPackageDTO HOLIDAY_PACKAGE_DTO_ONE = HolidayPackageDTO.builder()
             .id(ID_ONE)
             .name(NAME_ONE)
-            .description(DESCRIPTION_ONE)
-            .activities(ACTIVITIES_ONE)
+            .informationHoliday(INFORMATION_HOLIDAY_ONE)
             .build();
 }

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HolidayPackageRepository extends JpaRepository<HolidayPackage, Long> {
+
 }

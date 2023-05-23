@@ -14,4 +14,6 @@ public interface HolidayPackageService {
     HolidayPackageDTO updateHolidayPackage(Long id, HolidayPackageDTO holidayPackageDTO);
 
     void deleteHolidayPackageById(Long holidayPackageId);
+
+    String getAllInformationInOneLine(Long id);
 }

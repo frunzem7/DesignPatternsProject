@@ -1,11 +1,17 @@
 package com.example.designPatternsProject.utils;
 
+import com.example.designPatternsProject.dto.InformationHoliday;
+
 public class TestConstants {
     public static final Long ID_ONE = 1L;
     public static final Long ID_TWO = 2L;
 
     public static final String NAME_ONE = "African Safari Adventure";
     public static final String NAME_TWO = "Discover Italy: Rome, Florence, and Venice";
+
+    public static final InformationHoliday INFORMATION_HOLIDAY_ONE = new InformationHoliday(TestConstants.DESCRIPTION_ONE,
+            TestConstants.ACTIVITIES_ONE);
+
 
     public static final String DESCRIPTION_ONE = "Embark on an unforgettable journey through the African wilderness " +
             "with this package that includes flights, accommodations, tours, and activities. Get up close with some " +
