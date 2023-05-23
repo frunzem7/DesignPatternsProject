@@ -40,12 +40,13 @@ public class HolidayPackageServiceImpl implements HolidayPackageService {
 
     @Override
     public HolidayPackageDTO updateHolidayPackage(Long id, HolidayPackageDTO holidayPackageDTO) {
-        HolidayPackage holidayPackage = holidays.findById(id).map(hp -> hp.toBuilder()
-                        .name(holidayPackageDTO.getName())
+        HolidayPackage holidayPackage = holidays.findById(id)
+                .map(hp -> hp.toBuilder()
                         .description(holidayPackageDTO.getInformationHoliday().getDescription())
                         .activities(holidayPackageDTO.getInformationHoliday().getActivities())
                         .build())
                 .orElseThrow(() -> new HolidayPackageNotFoundException(String.format("Holiday package with id = %s not found.", id)));
+        new ChangeHolidayName(holidayPackage, holidayPackageDTO.getName()).execute();
         holidays.add(holidayPackage);
 
         return HolidayPackageDTO.toHolidayPackageDTO(holidayPackage);
