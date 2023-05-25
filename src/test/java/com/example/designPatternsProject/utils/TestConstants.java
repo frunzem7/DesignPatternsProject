@@ -1,6 +1,6 @@
 package com.example.designPatternsProject.utils;
 
-import com.example.designPatternsProject.dto.InformationHoliday;
+import com.example.designPatternsProject.dto.InformationHolidayDTO;
 
 public class TestConstants {
     public static final Long ID_ONE = 1L;
@@ -9,7 +9,7 @@ public class TestConstants {
     public static final String NAME_ONE = "African Safari Adventure";
     public static final String NAME_TWO = "Discover Italy: Rome, Florence, and Venice";
 
-    public static final InformationHoliday INFORMATION_HOLIDAY_ONE = new InformationHoliday(TestConstants.DESCRIPTION_ONE,
+    public static final InformationHolidayDTO INFORMATION_HOLIDAY_ONE = new InformationHolidayDTO(TestConstants.DESCRIPTION_ONE,
             TestConstants.ACTIVITIES_ONE);
 
 

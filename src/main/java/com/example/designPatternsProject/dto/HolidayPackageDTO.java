@@ -1,6 +1,7 @@
 package com.example.designPatternsProject.dto;
 
 import com.example.designPatternsProject.models.entities.HolidayPackage;
+import com.example.designPatternsProject.service.HolidayPackageVisitor;
 import lombok.*;
 
 @Setter
@@ -12,19 +13,13 @@ import lombok.*;
 public class HolidayPackageDTO {
     private Long id;
     private String name;
-    private InformationHoliday informationHoliday;
-
-    public HolidayPackageDTO(Long id, String name, String description, String activities) {
-        this.id = id;
-        this.name = name;
-        this.informationHoliday = new InformationHoliday(description, activities);
-    }
+    private InformationHolidayDTO informationHolidayDTO;
 
     public static HolidayPackageDTO toHolidayPackageDTO(HolidayPackage holidayPackage) {
         return HolidayPackageDTO.builder()
                 .id(holidayPackage.getId())
                 .name(holidayPackage.getName())
-                .informationHoliday(new InformationHoliday(holidayPackage.getDescription(), holidayPackage.getActivities()))
+                .informationHolidayDTO(new InformationHolidayDTO(holidayPackage.getDescription(), holidayPackage.getActivities()))
                 .build();
     }
 
@@ -32,8 +27,12 @@ public class HolidayPackageDTO {
         return HolidayPackage.builder()
                 .id(id)
                 .name(name)
-                .description(informationHoliday.getDescription())
-                .activities(informationHoliday.getActivities())
+                .description(informationHolidayDTO.getDescription())
+                .activities(informationHolidayDTO.getActivities())
                 .build();
+    }
+
+    public void accept(HolidayPackageVisitor holidayPackageVisitor) {
+        holidayPackageVisitor.visit(this);
     }
 }

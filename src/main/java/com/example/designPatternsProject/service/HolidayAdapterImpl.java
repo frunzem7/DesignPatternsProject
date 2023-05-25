@@ -10,7 +10,7 @@ public class HolidayAdapterImpl implements HolidayAdapter {
         return ("Welcome to %s holiday. " +
                 "Here you can find a small description about your holiday: %s. " +
                 "This are your plan activities: %s.").formatted(holidayPackageDTO.getName(),
-                holidayPackageDTO.getInformationHoliday().getDescription(),
-                holidayPackageDTO.getInformationHoliday().getActivities());
+                holidayPackageDTO.getInformationHolidayDTO().getDescription(),
+                holidayPackageDTO.getInformationHolidayDTO().getActivities());
     }
 }

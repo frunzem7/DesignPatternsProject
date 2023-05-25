@@ -8,7 +8,7 @@ import lombok.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class InformationHoliday {
+public class InformationHolidayDTO {
     private String description;
     private String activities;
 }

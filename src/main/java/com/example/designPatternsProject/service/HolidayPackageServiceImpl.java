@@ -16,6 +16,7 @@ import java.util.List;
 public class HolidayPackageServiceImpl implements HolidayPackageService {
     private final Holidays holidays;
     private final HolidayAdapter holidayAdapter;
+    private final HolidayPackageVisitor holidayPackageVisitor;
 
     @Override
     public HolidayPackageDTO createHolidayPackage(HolidayPackageDTO holidayPackageDTO) {
@@ -33,17 +34,19 @@ public class HolidayPackageServiceImpl implements HolidayPackageService {
 
     @Override
     public HolidayPackageDTO getById(Long holidayPackageId) {
-        return holidays.findById(holidayPackageId)
+        HolidayPackageDTO holidayPackageDTO = holidays.findById(holidayPackageId)
                 .map(HolidayPackageDTO::toHolidayPackageDTO)
                 .orElseThrow(() -> new HolidayPackageNotFoundException(String.format("Holiday package with id = %s not found.", holidayPackageId)));
+        holidayPackageDTO.accept(holidayPackageVisitor);
+        return holidayPackageDTO;
     }
 
     @Override
     public HolidayPackageDTO updateHolidayPackage(Long id, HolidayPackageDTO holidayPackageDTO) {
         HolidayPackage holidayPackage = holidays.findById(id)
                 .map(hp -> hp.toBuilder()
-                        .description(holidayPackageDTO.getInformationHoliday().getDescription())
-                        .activities(holidayPackageDTO.getInformationHoliday().getActivities())
+                        .description(holidayPackageDTO.getInformationHolidayDTO().getDescription())
+                        .activities(holidayPackageDTO.getInformationHolidayDTO().getActivities())
                         .build())
                 .orElseThrow(() -> new HolidayPackageNotFoundException(String.format("Holiday package with id = %s not found.", id)));
         new ChangeHolidayName(holidayPackage, holidayPackageDTO.getName()).execute();
