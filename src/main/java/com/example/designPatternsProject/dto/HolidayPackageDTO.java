@@ -35,4 +35,13 @@ public class HolidayPackageDTO {
     public void accept(HolidayPackageVisitor holidayPackageVisitor) {
         holidayPackageVisitor.visit(this);
     }
+
+    public HolidayPackageMemento createMemento() {
+        return new HolidayPackageMemento(name, informationHolidayDTO);
+    }
+
+    public void restoreMemento(HolidayPackageMemento memento) {
+        this.name = memento.getName();
+        this.informationHolidayDTO = memento.getInformationHolidayDTO();
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.designPatternsProject.service;
 
+import com.example.designPatternsProject.dto.HolidayPackageCaretaker;
 import com.example.designPatternsProject.dto.HolidayPackageDTO;
 import com.example.designPatternsProject.exception.HolidayPackageNotFoundException;
 import com.example.designPatternsProject.models.entities.HolidayPackage;
@@ -14,6 +15,7 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class HolidayPackageServiceImpl implements HolidayPackageService {
+    public static final HolidayPackageCaretaker HOLIDAY_PACKAGE_CARETAKER = new HolidayPackageCaretaker();
     private final Holidays holidays;
     private final HolidayAdapter holidayAdapter;
     private final HolidayPackageVisitor holidayPackageVisitor;
@@ -22,7 +24,9 @@ public class HolidayPackageServiceImpl implements HolidayPackageService {
     public HolidayPackageDTO createHolidayPackage(HolidayPackageDTO holidayPackageDTO) {
         HolidayPackage entity = holidayPackageDTO.toHolidayPackageEntity();
         HolidayPackage holidayPackage = holidays.add(entity);
-        return HolidayPackageDTO.toHolidayPackageDTO(holidayPackage);
+        HolidayPackageDTO holidayPackageDTO1 = HolidayPackageDTO.toHolidayPackageDTO(holidayPackage);
+        HOLIDAY_PACKAGE_CARETAKER.saveMemento(holidayPackageDTO1.createMemento());
+        return holidayPackageDTO1;
     }
 
     @Override
